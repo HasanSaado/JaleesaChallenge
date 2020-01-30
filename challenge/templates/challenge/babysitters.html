@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h3>Babysitters</h3>
+
+<form method="POST" action="/">
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" name="Add Babysitter">
+</form>
+
+{% for babysitter in babysitters %}
+<br/>
+<br/>
+<div>
+    <table>
+        <tr>
+            <td>{{babysitter}}</td>
+            <td style="padding-left: 5em;">{{babysitter.email}}</td>
+            <td style="padding-left: 5em;">{{babysitter.birth}}</td>
+            <td style="padding-left: 5em;">
+                <a href="{% url 'delete' babysitter.id %}">Delete</a>
+            </td>
+        </tr>
+    </table>
+</div>
+
+{% endfor %}
+</body>
+</html>
